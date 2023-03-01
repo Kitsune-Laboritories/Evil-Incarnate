@@ -12,17 +12,19 @@ public class PlayerController : MonoBehaviour
     private float jumpSpeed = 10;
     private float hInput;
     private float vInput;
-
+    private Animator animator;
     Vector3 moveVelocity;
     Vector3 turnVelocity;
 
     void Update()
     {
+        animator = GetComponent<Animator>();
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
 
         if (Input.GetKey(KeyCode.W))
         {
+            animator.SetBool("IsMoving", true);
             vInput = 1f;
         }
         else if (Input.GetKey(KeyCode.S))
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             vInput = 0f;
+            animator.SetBool("IsMoving", false);
         }
         if (Input.GetKey(KeyCode.A))
         {
