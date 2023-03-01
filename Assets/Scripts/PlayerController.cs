@@ -24,24 +24,29 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
+            animator.SetBool("IsIdle", false);
             animator.SetBool("IsMoving", true);
             vInput = 1f;
         }
         else if (Input.GetKey(KeyCode.S))
         {
+            animator.SetBool("IsMoving", true);
             vInput = -1f;
         }
         else
         {
             vInput = 0f;
             animator.SetBool("IsMoving", false);
+            animator.SetBool("IsIdle", true);
         }
         if (Input.GetKey(KeyCode.A))
         {
+            animator.SetBool("IsMoving", true);
             hInput = -0.5f;
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            animator.SetBool("IsMoving", true);
             hInput = 0.5f;
         }
         else
