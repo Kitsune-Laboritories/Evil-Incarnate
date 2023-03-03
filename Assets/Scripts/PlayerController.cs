@@ -1,74 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// https://www.youtube.com/watch?v=ExEJtw2mhR4
 
 public class PlayerController : MonoBehaviour
 {
-    public CharacterController controller;
-    private float speed = 6;
-    private float rotationSpeed = 90;
-    private float gravity = -20f;
-    private float jumpSpeed = 10;
-    private float hInput;
-    private float vInput;
+    private Rigidbody player;
     private Animator animator;
-    Vector3 moveVelocity;
-    Vector3 turnVelocity;
+    private Quaternion direction;
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GetComponent<Rigidbody>();
+    }
 
+    // Update is called once per frame
     void Update()
     {
         animator = GetComponent<Animator>();
-        hInput = Input.GetAxis("Horizontal");
-        vInput = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.W))
+        // https://docs.unity3d.com/ScriptReference/Rigidbody.MovePosition.html
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             animator.SetBool("IsIdle", false);
             animator.SetBool("IsMoving", true);
-            vInput = 1f;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
+            animator.SetBool("IsIdle", false);
             animator.SetBool("IsMoving", true);
-            vInput = -1f;
+        }
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsMoving", true);
+
+            // https://docs.unity3d.com/ScriptReference/Quaternion.AngleAxis.html
+            direction = transform.rotation * Quaternion.AngleAxis(-90, Vector3.up);
+
+            // https://stackoverflow.com/questions/69157425/basic-idea-of-quaternion-y-axis-90-degree-rotate
+            player.MoveRotation(Quaternion.Lerp(transform.rotation, direction, 5f * Time.deltaTime));
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsMoving", true);
+
+            // https://docs.unity3d.com/ScriptReference/Quaternion.AngleAxis.html
+            direction = transform.rotation * Quaternion.AngleAxis(90, Vector3.up);
+
+            // https://stackoverflow.com/questions/69157425/basic-idea-of-quaternion-y-axis-90-degree-rotate
+            player.MoveRotation(Quaternion.Lerp(transform.rotation, direction, 5f * Time.deltaTime));
         }
         else
         {
-            vInput = 0f;
             animator.SetBool("IsMoving", false);
             animator.SetBool("IsIdle", true);
         }
-        if (Input.GetKey(KeyCode.A))
+
+        // https://forum.unity.com/threads/how-do-i-make-my-rigidbody-character-move-relative-to-his-rotation.983715/#post-%206395462
+        move = player.rotation * move;
+
+        player.MovePosition(transform.position + move * Time.deltaTime * 6f);
+
+
+        if (Input.GetKey (KeyCode.Space))
         {
             animator.SetBool("IsMoving", true);
-            hInput = -0.5f;
+            player.MovePosition(transform.position + move * Time.deltaTime + Vector3.up * 8f * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            animator.SetBool("IsMoving", true);
-            hInput = 0.5f;
-        }
-        else
-        {
-            hInput = 0f;
-        }
-
-        if (controller.isGrounded)
-        {
-            moveVelocity = transform.forward * speed * vInput;
-            turnVelocity = transform.up * rotationSpeed * hInput;
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                moveVelocity.y = jumpSpeed;
-            }
-        }
-        moveVelocity.y += gravity * Time.deltaTime;
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(turnVelocity * Time.deltaTime);
-        }
-        controller.Move(moveVelocity * Time.deltaTime);
     }
+
 }
