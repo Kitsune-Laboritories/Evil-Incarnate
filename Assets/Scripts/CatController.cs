@@ -7,23 +7,33 @@ public class CatController : MonoBehaviour
 {
     public float speed;
     private Vector2 move;
-    private Animator animator;
-
+    Animator animator;
     public void OnMove(InputAction.CallbackContext context)
     {
         move = context.ReadValue<Vector2>();
-        Debug.Log("move: "+ move);
     }
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         movePlayer();
+        //if joystick is pressed player is walking
+        if (move.x != 0)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("notWalking", false);
+            Debug.Log(move.x + " and " + move.y + "Cat Walks");
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("notWalking", true);
+        }
     }
 
     public void movePlayer()
