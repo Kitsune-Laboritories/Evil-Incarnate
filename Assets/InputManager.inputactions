@@ -13,6 +13,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "fdbd2acc-0165-4a67-9bea-7e13f9be4122",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -73,12 +82,12 @@
                 },
                 {
                     "name": "",
-                    "id": "3f37d037-9388-4e96-a577-6a7c18257a23",
-                    "path": "<Gamepad>/leftStick",
+                    "id": "2b7b541d-a527-4661-b2f9-318bac978052",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

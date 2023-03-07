@@ -16,8 +16,8 @@ public class animationStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if player presses wasd keyss
-        if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
+        
+        if (Input.GetAxis("Horizontal") != 0)
         {
             animator.SetBool("isWalking", true);
             animator.SetBool("notWalking", false);
@@ -27,6 +27,9 @@ public class animationStateController : MonoBehaviour
             animator.SetBool("isWalking", false);
             animator.SetBool("notWalking", true);
         }
+   
+
     }
+
 }
  
