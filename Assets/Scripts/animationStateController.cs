@@ -17,7 +17,7 @@ public class animationStateController : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetAxis("Horizontal") != 0)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
             animator.SetBool("isWalking", true);
             animator.SetBool("notWalking", false);
