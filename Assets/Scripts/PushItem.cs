@@ -39,7 +39,7 @@ public class PushItem : MonoBehaviour
                 rb.AddForce(player.transform.forward * forceMultiplier);
 
                 GetComponent<Rigidbody>().useGravity = true;
-                GetComponent<BoxCollider>().enabled = true;
+                //GetComponent<BoxCollider>().enabled = true;
 
                 forceMultiplier = 0;
 
