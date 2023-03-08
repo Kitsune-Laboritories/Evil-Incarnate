@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class animationStateController : MonoBehaviour
 {
     Animator animator;
@@ -27,6 +28,7 @@ public class animationStateController : MonoBehaviour
             animator.SetBool("isWalking", false);
             animator.SetBool("notWalking", true);
         }
+
 
     }
 
