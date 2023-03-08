@@ -9,7 +9,7 @@ public class animationStateController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        Debug.Log(animator);
+        //Debug.Log(animator);
 
     }
 
@@ -27,7 +27,6 @@ public class animationStateController : MonoBehaviour
             animator.SetBool("isWalking", false);
             animator.SetBool("notWalking", true);
         }
-   
 
     }
 
