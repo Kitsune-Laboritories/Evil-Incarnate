@@ -1530,7 +1530,7 @@ GameObject:
   - component: {fileID: 1635505186}
   - component: {fileID: 1635505185}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: MenuEvent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

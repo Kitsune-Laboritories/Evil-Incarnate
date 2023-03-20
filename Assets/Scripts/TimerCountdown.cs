@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimerCountdown : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
-    public float timeValue = 90;
+    public float timeValue = 30;
     
 
     // Start is called before the first frame update
@@ -37,7 +38,7 @@ public class TimerCountdown : MonoBehaviour
         }
         else
         {
-            timeText.text = "Times up!";
+            SceneManager.LoadScene("ScoreBoard");
         }
 
     }
