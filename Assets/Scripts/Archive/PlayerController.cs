@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody player;
-    private Animator animator;
-    private Quaternion direction;
+    private float speed = 6f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,59 +15,55 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator = GetComponent<Animator>();
 
         // https://docs.unity3d.com/ScriptReference/Rigidbody.MovePosition.html
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+        Vector3 forward = Vector3.Cross(Camera.main.transform.right, Vector3.up);
+
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsMoving", true);
+            // Move the player forward
+            player.MovePosition(transform.position + forward * Time.deltaTime * speed);
+            transform.rotation = Quaternion.LookRotation(forward);
         }
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsMoving", true);
+            // Move the player backward
+            player.MovePosition(transform.position - forward * Time.deltaTime * speed);
+            transform.rotation = Quaternion.LookRotation(-forward);
         }
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsMoving", true);
+            // Move the player to the left
+            player.MovePosition(transform.position - Camera.main.transform.right * Time.deltaTime * speed);
+            transform.rotation = Quaternion.LookRotation(-Camera.main.transform.right);
 
-            // https://docs.unity3d.com/ScriptReference/Quaternion.AngleAxis.html
-            direction = transform.rotation * Quaternion.AngleAxis(-90, Vector3.up);
-
-            // https://stackoverflow.com/questions/69157425/basic-idea-of-quaternion-y-axis-90-degree-rotate
-            player.MoveRotation(Quaternion.Lerp(transform.rotation, direction, 5f * Time.deltaTime));
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            animator.SetBool("IsIdle", false);
-            animator.SetBool("IsMoving", true);
-
-            // https://docs.unity3d.com/ScriptReference/Quaternion.AngleAxis.html
-            direction = transform.rotation * Quaternion.AngleAxis(90, Vector3.up);
-
-            // https://stackoverflow.com/questions/69157425/basic-idea-of-quaternion-y-axis-90-degree-rotate
-            player.MoveRotation(Quaternion.Lerp(transform.rotation, direction, 5f * Time.deltaTime));
+            // Move the player to the right
+            player.MovePosition(transform.position + Camera.main.transform.right * Time.deltaTime * speed);
+            transform.rotation = Quaternion.LookRotation(Camera.main.transform.right);
         }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-            animator.SetBool("IsIdle", true);
-        }
-
-        // https://forum.unity.com/threads/how-do-i-make-my-rigidbody-character-move-relative-to-his-rotation.983715/#post-%206395462
-        move = player.rotation * move;
-
-        player.MovePosition(transform.position + move * Time.deltaTime * 6f);
-
 
         if (Input.GetKey (KeyCode.Space))
         {
-            animator.SetBool("IsMoving", true);
             player.MovePosition(transform.position + move * Time.deltaTime + Vector3.up * 8f * Time.deltaTime);
+        }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody obj = hit.collider.attachedRigidbody;
+
+        if (obj != null)
+        {
+            Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
+            forceDirection.y = 0;
+            forceDirection.Normalize();
+
+            obj.AddForceAtPosition(forceDirection * 1f, transform.position, ForceMode.Impulse);
         }
     }
 
