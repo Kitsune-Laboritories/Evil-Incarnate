@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey (KeyCode.Space))
         {
-            player.MovePosition(transform.position + move * Time.deltaTime + Vector3.up * 8f * Time.deltaTime);
+            player.MovePosition(transform.position + move * Time.deltaTime + Vector3.up * 5f * Time.deltaTime);
         }
     }
 
