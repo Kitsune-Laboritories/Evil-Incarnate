@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
     public void Play()
     {
         SceneManager.LoadScene("Store");
@@ -15,4 +16,5 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Player Has Quit The Game");
     }
+
 }
