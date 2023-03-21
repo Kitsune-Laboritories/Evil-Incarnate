@@ -53,5 +53,6 @@ public class PausedMenu : MonoBehaviour
     public void RestartButton()
     {
         SceneManager.LoadScene("Store");
+        ScoringSystem.theScore = 0;
     }
 }

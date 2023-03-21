@@ -9,6 +9,12 @@ public class KnockOver: MonoBehaviour
     public int pointsEarned = 1;
     private bool isKnockedOver;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        isKnockedOver = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
