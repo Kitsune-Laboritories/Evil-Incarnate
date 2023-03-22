@@ -4,67 +4,62 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody player;
+    private CharacterController controller;
     private float speed = 6f;
+    private Camera mainCamera;
+    private float jumpSpeed = 7f;
+    private float gravity = 20f;
+    private float verticalVelocity;
+    private float friction = 0.7f;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        // https://docs.unity3d.com/ScriptReference/Rigidbody.MovePosition.html
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        // Get the movement direction relative to the camera
         Vector3 forward = Vector3.Cross(Camera.main.transform.right, Vector3.up);
+        Vector3 moveDirection = forward * Input.GetAxis("Vertical") + mainCamera.transform.right * Input.GetAxis("Horizontal");
+        moveDirection.y = 0;
+        moveDirection.Normalize();
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
-            // Move the player forward
-            player.MovePosition(transform.position + forward * Time.deltaTime * speed);
             transform.rotation = Quaternion.LookRotation(forward);
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
-            // Move the player backward
-            player.MovePosition(transform.position - forward * Time.deltaTime * speed);
             transform.rotation = Quaternion.LookRotation(-forward);
         }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
-            // Move the player to the left
-            player.MovePosition(transform.position - Camera.main.transform.right * Time.deltaTime * speed);
             transform.rotation = Quaternion.LookRotation(-Camera.main.transform.right);
-
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
-            // Move the player to the right
-            player.MovePosition(transform.position + Camera.main.transform.right * Time.deltaTime * speed);
             transform.rotation = Quaternion.LookRotation(Camera.main.transform.right);
         }
 
-        if (Input.GetKey (KeyCode.Space))
+        // Move the player
+        if (controller.isGrounded)
         {
-            player.MovePosition(transform.position + move * Time.deltaTime + Vector3.up * 8f * Time.deltaTime);
+            verticalVelocity = 0;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                verticalVelocity = jumpSpeed;
+            }
         }
+
+        verticalVelocity -= gravity * Time.deltaTime;
+        moveDirection.y = verticalVelocity;
+        moveDirection *= speed * Time.deltaTime * friction;
+        controller.Move(moveDirection * speed * Time.deltaTime);
+
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Rigidbody obj = hit.collider.attachedRigidbody;
-
-        if (obj != null)
-        {
-            Vector3 forceDirection = hit.gameObject.transform.position - transform.position;
-            forceDirection.y = 0;
-            forceDirection.Normalize();
-
-            obj.AddForceAtPosition(forceDirection * 1f, transform.position, ForceMode.Impulse);
-        }
-    }
-
 }
