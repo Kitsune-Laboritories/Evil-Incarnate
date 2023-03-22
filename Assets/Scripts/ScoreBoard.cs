@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreBoard : MonoBehaviour
 {
@@ -22,5 +23,22 @@ public class ScoreBoard : MonoBehaviour
     void Update()
     {
         output.text = playerName + ": " + newScore;
+    }
+
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void TryAgainButton()
+    {
+        SceneManager.LoadScene("Store");
+        ScoringSystem.theScore = 0;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Player Has Quit The Game");
     }
 }
