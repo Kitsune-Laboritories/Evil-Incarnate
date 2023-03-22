@@ -1,37 +1,55 @@
-// This script pushes all rigidbodies that the character touches
-
 using UnityEngine;
-using System.Collections;
 
 public class PickUpObject : MonoBehaviour
 {
     private bool holding = false;
     public Transform rp;
+    private GameObject pickedObject;
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void Update()
     {
-        if (hit.gameObject.tag == "PickableObject" && Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && !holding)
         {
-            if (!holding)
+            float maxDistance = 2.0f;
+
+            GameObject[] pickableObjects = GameObject.FindGameObjectsWithTag("PickableObject");
+
+            float closestDistance = float.MaxValue;
+            GameObject closestObject = null;
+            foreach (GameObject obj in pickableObjects)
             {
-                // Destroy(hit.gameObject);
-                hit.gameObject.SetActive(false);
-                GameObject childObject = Instantiate(hit.gameObject) as GameObject;
+                float distance = Vector3.Distance(transform.position, obj.transform.position);
+                if (distance < closestDistance && distance < maxDistance)
+                {
+                    closestDistance = distance;
+                    closestObject = obj;
+                }
+            }
+
+            if (closestObject != null)
+            {
+                pickedObject = closestObject;
+                Destroy(pickedObject);
+                Rigidbody pickedObj = pickedObject.GetComponent<Rigidbody>();
+                pickedObj.useGravity = false;
+                GameObject childObject = Instantiate(pickedObject) as GameObject;
                 childObject.transform.parent = rp;
-                childObject.transform.localPosition = new Vector3(0.3f, -0.2f, 0.9f);
+                childObject.transform.localPosition = new Vector3(0f, 0.1f, 0f);
+                childObject.transform.position = transform.position + transform.forward * 0.3f;
                 childObject.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                 holding = true;
             }
-            // if (holding)
-            // {
-            //     GameObject childObject = Camera.main.transform.GetChild(0).gameObject;
-            //     childObject.transform.parent = null;
-            //     Rigidbody childRigidbody = childObject.GetComponent<Rigidbody>();
-            //     childRigidbody.isKinematic = false;
-            //     childRigidbody.AddForce(Camera.main.transform.forward * 10.0f, ForceMode.Impulse);
-            //     holding = false;
-            // }
+        }
 
+        if (Input.GetKey(KeyCode.Q) && holding)
+        {
+            GameObject childObject = rp.GetChild(0).gameObject;
+            childObject.transform.parent = null;
+            Rigidbody childRigidbody = childObject.GetComponent<Rigidbody>();
+            childRigidbody.isKinematic = false;
+            childRigidbody.useGravity = true;
+            childRigidbody.AddForce(rp.forward * 5.0f, ForceMode.Impulse);
+            holding = false;
         }
     }
 }

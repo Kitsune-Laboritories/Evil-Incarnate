@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        // Get the movement direction relative to the camera
         Vector3 forward = Vector3.Cross(Camera.main.transform.right, Vector3.up);
         Vector3 moveDirection = forward * Input.GetAxis("Vertical") + mainCamera.transform.right * Input.GetAxis("Horizontal");
         moveDirection.y = 0;
