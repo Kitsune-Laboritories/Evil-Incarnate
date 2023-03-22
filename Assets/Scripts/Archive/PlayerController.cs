@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private float speed = 6f;
+    private float speed = 10f;
     private Camera mainCamera;
-    private float jumpSpeed = 6f;
-    private float gravity = 20f;
+    private float jumpSpeed = 7f;
+    private float gravity = 30f;
     private float verticalVelocity;
     private float friction = 0.7f;
 
