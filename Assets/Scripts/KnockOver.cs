@@ -8,11 +8,15 @@ public class KnockOver: MonoBehaviour
     public float fallingThreshold = -1f;
     public int pointsEarned = 1;
     private bool isKnockedOver;
+    private Vector3 initialPosition;
+    private bool taskDone;
 
     // Start is called before the first frame update
     void Start()
     {
         isKnockedOver = false;
+        initialPosition = transform.position;
+        taskDone = false;
     }
 
     // Update is called once per frame
@@ -37,6 +41,10 @@ public class KnockOver: MonoBehaviour
     private void addScore()
     {
         Debug.Log("Item is Knocked Over!");
-        ScoringSystem.theScore += pointsEarned;
+        if (transform.position.x != initialPosition.x && transform.position.z != initialPosition.z && !taskDone)
+        {
+            ScoringSystem.theScore += pointsEarned;
+            taskDone = true;
+        }
     }
 }
