@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private float speed = 10f;
     private Camera mainCamera;
-    private float jumpSpeed = 6f;
+    // private float jumpSpeed = 6f;
     private float gravity = 30f;
     private float verticalVelocity;
     private float friction = 0.7f;
+    private bool jumping = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,20 +46,28 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Camera.main.transform.right);
         }
 
-        // Move the player
         if (controller.isGrounded)
         {
             verticalVelocity = 0;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                verticalVelocity = jumpSpeed;
+                jumping = true;
             }
         }
 
+        if (jumping)
+        {
+            verticalVelocity = Mathf.Sqrt(0.7f * gravity);
+            jumping = false;
+        }
+
+        // Move the player
         verticalVelocity -= gravity * Time.deltaTime;
         moveDirection.y = verticalVelocity;
         moveDirection *= speed * Time.deltaTime * friction;
         controller.Move(moveDirection * speed * Time.deltaTime);
+
+
 
     }
 }
