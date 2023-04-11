@@ -10,6 +10,8 @@ public class KnockOver: MonoBehaviour
     private bool isKnockedOver;
     private Vector3 initialPosition;
     private bool taskDone;
+    public AudioSource canFall;
+    public AudioClip sound;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,9 @@ public class KnockOver: MonoBehaviour
         isKnockedOver = false;
         initialPosition = transform.position;
         taskDone = false;
+        canFall = GetComponent<AudioSource>();
+        sound = Resources.Load<AudioClip>("can_sound");
+        canFall.playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -43,6 +48,7 @@ public class KnockOver: MonoBehaviour
         Debug.Log("Item is Knocked Over!");
         if (transform.position.x != initialPosition.x && transform.position.z != initialPosition.z && !taskDone)
         {
+            canFall.PlayOneShot(sound);
             ScoringSystem.theScore += pointsEarned;
             taskDone = true;
         }
