@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private float speed = 10f;
+    private float speed = 8f;
     private Camera mainCamera;
     // private float jumpSpeed = 6f;
     private float gravity = 30f;
@@ -29,19 +29,19 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = 0;
         moveDirection.Normalize();
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             transform.rotation = Quaternion.LookRotation(forward);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             transform.rotation = Quaternion.LookRotation(-forward);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             transform.rotation = Quaternion.LookRotation(-Camera.main.transform.right);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             transform.rotation = Quaternion.LookRotation(Camera.main.transform.right);
         }
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumping)
         {
-            verticalVelocity = Mathf.Sqrt(0.7f * gravity);
+            verticalVelocity = Mathf.Sqrt(2* gravity);
             jumping = false;
         }
 
@@ -66,8 +66,6 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = verticalVelocity;
         moveDirection *= speed * Time.deltaTime * friction;
         controller.Move(moveDirection * speed * Time.deltaTime);
-
-
 
     }
 }

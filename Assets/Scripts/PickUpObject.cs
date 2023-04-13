@@ -35,7 +35,7 @@ public class PickUpObject : MonoBehaviour
                 GameObject childObject = Instantiate(pickedObject) as GameObject;
                 childObject.transform.parent = rp;
                 childObject.transform.localPosition = new Vector3(0f, 0.1f, 0f);
-                childObject.transform.position = transform.position + transform.forward * 0.3f;
+                childObject.transform.position = transform.position + transform.forward * 0.3f + transform.up * 0.2f;
                 childObject.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                 holding = true;
             }

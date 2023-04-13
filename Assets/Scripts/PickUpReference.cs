@@ -15,6 +15,6 @@ public class PickUpReference : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        referencePt.transform.position = targetObj.transform.position;
+        referencePt.transform.position = targetObj.transform.position + new Vector3(0, 2f, 0);
     }
 }
