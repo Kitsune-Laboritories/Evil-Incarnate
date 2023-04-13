@@ -51,12 +51,12 @@ public class PausedMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartButton()
     {
-        SceneManager.LoadScene("Store");
+        SceneManager.LoadScene("Intro");
         ScoringSystem.theScore = 0;
     }
 }
