@@ -22,6 +22,10 @@ public class Intro : MonoBehaviour
     void Update()
     {
         output.text = playerName + ", the tabby cat woke up from his nap to find his owner gone without a proper goodbye kiss. Mess up the store to show him whats what." ;
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("Store");
+        }
     }
 
     public void XButton()
