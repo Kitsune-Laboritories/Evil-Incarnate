@@ -18,6 +18,7 @@ namespace PW
 {
     public class HeatableProduct : ProductGameObject
     {
+        public GameObject Fire;
 
         Collider m_collider;
 
@@ -53,6 +54,7 @@ namespace PW
         {
             if (m_Machine != null)
             {
+                
                 //Check if machine is available before doing anything
                 if (m_Machine.isEmpty)
                 {
@@ -74,8 +76,9 @@ namespace PW
         {
             //Set the product at starting position
             transform.position = m_Machine.beginEnteringSpot.position;
-
+            
             yield return base.MoveToPlace(m_Machine.cookingSpot.position);
+            Fire.SetActive(true);
         }
 
         public override IEnumerator AnimateGoingToSlot()
