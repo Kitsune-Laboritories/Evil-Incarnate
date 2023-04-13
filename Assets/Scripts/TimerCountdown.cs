@@ -38,6 +38,8 @@ public class TimerCountdown : MonoBehaviour
         }
         else
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("ScoreBoard");
         }
 
