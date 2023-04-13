@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
         m.GetComponent<AudioSource>().clip = sound;
         m.GetComponent<AudioSource>().Play();
 
-        SceneManager.LoadScene("Store");
+        SceneManager.LoadScene("Intro");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

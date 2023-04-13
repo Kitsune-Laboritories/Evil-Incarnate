@@ -32,7 +32,7 @@ public class ScoreBoard : MonoBehaviour
 
     public void TryAgainButton()
     {
-        SceneManager.LoadScene("Store");
+        SceneManager.LoadScene("Intro");
         ScoringSystem.theScore = 0;
     }
 
