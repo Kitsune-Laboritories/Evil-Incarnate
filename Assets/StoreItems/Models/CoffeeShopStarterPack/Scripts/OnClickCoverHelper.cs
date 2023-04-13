@@ -28,7 +28,7 @@ namespace PW
         private void OnMouseDown()
         {
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (methodToCall != null)
             {
 
                 methodToCall.Invoke();

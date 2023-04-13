@@ -44,8 +44,6 @@ namespace PW
                 m_progressHelper.ToggleHelper(false);
             }
         }
-
-
         public void SetProduct(HeatableProduct product,float heatingAmount)
         {
             if (doorIsOpen || currentProduct != null)
@@ -55,36 +53,6 @@ namespace PW
             StartCoroutine(OpenMicrowaveAndHeatProduct());
             
         }
-
-        // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            float maxDistance = 2.0f;
-
-            GameObject[] pickableObjects = GameObject.FindGameObjectsWithTag("PickableObject");
-
-            float closestDistance = float.MaxValue;
-            GameObject closestObject = null;
-            foreach (GameObject obj in pickableObjects)
-            {
-                float distance = Vector3.Distance(transform.position, obj.transform.position);
-                if (distance < closestDistance && distance < maxDistance)
-                {
-                        closestDistance = distance;
-                        closestObject = obj;
-                }
-            }
-
-
-                if (closestObject != null)
-            {
-                OnMouseDown();
-                ScoringSystem.theScore += 70;
-            }
-        }
-    }
 
         IEnumerator OpenMicrowaveAndHeatProduct()
         {
@@ -155,7 +123,6 @@ namespace PW
                     StartCoroutine(currentProduct.AnimateGoingToSlot());
                     currentProduct = null;
                     StartCoroutine(PlayDoorAnim(true, true));
-        
                 }
                 else
                     return;
