@@ -10,6 +10,7 @@ public class ScoringSystem : MonoBehaviour
     public static int theScore = 0;
     public static Vector3 initialPosition;
     public static bool taskDone;
+    public static int keys = 0;
     // Start is called before the first frame update
     void Start()
     {

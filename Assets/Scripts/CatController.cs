@@ -59,7 +59,7 @@ public class CatController : MonoBehaviour
         var targetAngle = Mathf.Atan2(_direction.x, _direction.y);
 
         Vector3 movement = new Vector3(_input.x, 0.0f, _input.y);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.10f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 1f);
     }
 
     public void movePlayer()

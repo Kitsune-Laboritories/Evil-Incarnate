@@ -44,11 +44,11 @@ public class KnockOver: MonoBehaviour
 
     private void addScore()
     {
-        Debug.Log("Item is Knocked Over!");
         if (transform.position.x != initialPosition.x && transform.position.z != initialPosition.z && !taskDone)
         {
             m.AddComponent<AudioSource>();
             m.GetComponent<AudioSource>().clip = sound;
+            m.GetComponent<AudioSource>().volume = 0.2f;
             m.GetComponent<AudioSource>().Play();
             ScoringSystem.theScore += pointsEarned;
             taskDone = true;
