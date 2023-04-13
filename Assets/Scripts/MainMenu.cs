@@ -20,8 +20,6 @@ public class MainMenu : MonoBehaviour
         m.GetComponent<AudioSource>().Play();
 
         SceneManager.LoadScene("Intro");
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Quit()

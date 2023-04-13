@@ -24,12 +24,16 @@ public class Intro : MonoBehaviour
         output.text = playerName + ", the tabby cat woke up from his nap to find his owner gone without a proper goodbye kiss. Mess up the store to show him whats what." ;
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             SceneManager.LoadScene("Store");
         }
     }
 
     public void XButton()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene("Store");
     }
 
