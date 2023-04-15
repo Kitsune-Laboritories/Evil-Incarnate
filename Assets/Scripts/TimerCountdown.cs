@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TimerCountdown : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
-    public float timeValue = 30;
+    public static float timeValue = 130;
     
 
     // Start is called before the first frame update
@@ -20,7 +20,6 @@ public class TimerCountdown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (timeValue > 0)
         {
             timeValue -= Time.deltaTime;
@@ -28,11 +27,11 @@ public class TimerCountdown : MonoBehaviour
             int seconds = (int)timeValue - (60 * minutes);
             if(seconds < 10)
             {
-                timeText.text = minutes + ":0" + seconds + " Left";
+                timeText.text = minutes + ":0" + seconds;
             }
             else
             {
-                timeText.text = minutes + ":" + seconds + " Left";
+                timeText.text = minutes + ":" + seconds;
             }
             
         }

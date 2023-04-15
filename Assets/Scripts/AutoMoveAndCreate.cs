@@ -8,6 +8,7 @@ public class AutoMoveAndCreate : MonoBehaviour
     public float speed = 5f;
     public float distance = 10f;
     private Vector3 initialPos;
+    private Quaternion initialRotate;
     private float currentDistance;
     public float pushPower = 10f;
     public AudioClip car_horn_sound;
@@ -16,6 +17,7 @@ public class AutoMoveAndCreate : MonoBehaviour
     void Start()
     {
         initialPos = transform.position;
+        initialRotate = transform.rotation;
         currentDistance = 0f;
         car_horn_sound = (AudioClip) Resources.Load<AudioClip>("car_horn");
         m = new GameObject("Music");
@@ -30,7 +32,7 @@ public class AutoMoveAndCreate : MonoBehaviour
         }
         else
         {
-            Instantiate(car, initialPos, Quaternion.identity);
+            Instantiate(car, initialPos, initialRotate);
             currentDistance = 0f;
             Destroy(gameObject);
         }

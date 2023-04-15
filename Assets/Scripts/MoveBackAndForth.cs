@@ -8,6 +8,8 @@ public class MoveBackAndForth : MonoBehaviour
     public float distance = 10f;
     private Vector3 initialPos;
     private bool movingForward = true;
+    public CharacterController player;
+    private float time = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,7 @@ public class MoveBackAndForth : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, initialPos) < distance)
             {
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
             else
             {
@@ -33,12 +35,22 @@ public class MoveBackAndForth : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, initialPos) >= 5f)
             {
-                transform.Translate(Vector3.back * speed * Time.deltaTime);
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
             else
             {
                 movingForward = true;
             }
+        }
+        Vector2 lightPos = new Vector2(transform.position.x, transform.position.z);
+        Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.z);
+
+        time += Time.deltaTime;
+
+        if (Vector2.Distance(playerPos, lightPos) < 5f && time >= 1.5f)
+        {
+            TimerCountdown.timeValue -= 10f;
+            time = 0f;
         }
     }
 }
