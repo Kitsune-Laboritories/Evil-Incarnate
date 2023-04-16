@@ -23,9 +23,9 @@ public class MapClick : MonoBehaviour
         m.GetComponent<AudioSource>().clip = sound;
         m.GetComponent<AudioSource>().Play();
         if (!mapShow){
-            CameraFollow.offsetDistance = 30f;
+            CameraFollow.offsetDistance = 300f;
         } else {
-            CameraFollow.offsetDistance = 10f;
+            CameraFollow.offsetDistance = 100f;
         }
         displayMap2.SetActive(mapShow);
         mapShow = !mapShow;
