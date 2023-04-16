@@ -47,7 +47,7 @@ public class MoveBackAndForth : MonoBehaviour
 
         time += Time.deltaTime;
 
-        if (Vector2.Distance(playerPos, lightPos) < 5f && time >= 1.5f)
+        if (Vector2.Distance(playerPos, lightPos) < 8f && time >= 1.5f)
         {
             TimerCountdown.timeValue -= 10f;
             time = 0f;
