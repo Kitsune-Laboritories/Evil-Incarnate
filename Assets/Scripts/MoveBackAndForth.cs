@@ -10,6 +10,7 @@ public class MoveBackAndForth : MonoBehaviour
     private bool movingForward = true;
     public CharacterController player;
     private float time = 0f;
+    public float rangeDetect = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +48,7 @@ public class MoveBackAndForth : MonoBehaviour
 
         time += Time.deltaTime;
 
-        if (Vector2.Distance(playerPos, lightPos) < 8f && time >= 1.5f)
+        if (Vector2.Distance(playerPos, lightPos) < rangeDetect && time >= 0.5f)
         {
             TimerCountdown.timeValue -= 10f;
             time = 0f;

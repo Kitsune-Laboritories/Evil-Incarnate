@@ -10,8 +10,8 @@ public class KnockOver: MonoBehaviour
     private bool isKnockedOver;
     private Vector3 initialPosition;
     private bool taskDone;
-    public AudioClip sound;
-    private GameObject m;
+    // public AudioClip sound;
+    // private GameObject m;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +19,8 @@ public class KnockOver: MonoBehaviour
         isKnockedOver = false;
         initialPosition = transform.position;
         taskDone = false;
-        sound = (AudioClip) Resources.Load<AudioClip>("can_sound");
-        m = new GameObject("Music");
+        // sound = (AudioClip) Resources.Load<AudioClip>("can_sound");
+        // m = new GameObject("Music");
     }
 
     // Update is called once per frame
@@ -46,10 +46,10 @@ public class KnockOver: MonoBehaviour
     {
         if (transform.position.x != initialPosition.x && transform.position.z != initialPosition.z && !taskDone)
         {
-            m.AddComponent<AudioSource>();
-            m.GetComponent<AudioSource>().clip = sound;
-            m.GetComponent<AudioSource>().volume = 0.2f;
-            m.GetComponent<AudioSource>().Play();
+            // m.AddComponent<AudioSource>();
+            // m.GetComponent<AudioSource>().clip = sound;
+            // m.GetComponent<AudioSource>().volume = 0.2f;
+            // m.GetComponent<AudioSource>().Play();
             ScoringSystem.theScore += pointsEarned;
             taskDone = true;
         }
