@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutoMoveAndCreate : MonoBehaviour
 {
     public GameObject car;
-    public float speed = 5f;
+    public float speed = 15f;
     public float distance = 10f;
     private Vector3 initialPos;
     private Quaternion initialRotate;

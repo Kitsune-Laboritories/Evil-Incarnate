@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TimerCountdown : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
-    public static float timeValue = 300;
+    public static float timeValue = 360;
     
 
     // Start is called before the first frame update
