@@ -15,11 +15,15 @@ public class ScoringSystem : MonoBehaviour
     void Start()
     {
         scoreText = GetComponent<TextMeshProUGUI>();
+        taskDone = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         scoreText.text =  keys + " keys";
+        if (keys >= 3)
+            taskDone = true;
+        
     }
 }

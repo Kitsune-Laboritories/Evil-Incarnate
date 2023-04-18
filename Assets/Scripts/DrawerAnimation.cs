@@ -13,8 +13,7 @@ public class DrawerAnimation : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        //Debug.Log(animator);
-
+        
     }
 
     private void Awake()
@@ -60,7 +59,6 @@ public class DrawerAnimation : MonoBehaviour
         //yield on a new YieldInstruction that waits for # seconds.
         yield return new WaitForSeconds(1);
         HiddenObject.SetActive(true);
-
     }
 
 }

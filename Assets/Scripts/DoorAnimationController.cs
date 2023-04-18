@@ -45,7 +45,7 @@ public class DoorAnimationController : MonoBehaviour
             }
             
 
-            if (closestObject != null)
+            if (closestObject != null && ScoringSystem.taskDone == true)
             {
                 door = closestObject;
                 //turn on animation
