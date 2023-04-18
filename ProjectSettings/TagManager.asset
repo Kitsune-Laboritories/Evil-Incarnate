@@ -10,6 +10,8 @@ TagManager:
   - Obstacle
   - Key
   - Door
+  - Fluid
+  - Openable
   layers:
   - Default
   - TransparentFX
