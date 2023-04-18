@@ -9,6 +9,7 @@ TagManager:
   - PickableObject
   - Obstacle
   - Key
+  - Door
   layers:
   - Default
   - TransparentFX
