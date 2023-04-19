@@ -9,6 +9,7 @@ public class TimerCountdown : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
     public static float timeValue = 360;
+    public static float timeSpend;
     
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class TimerCountdown : MonoBehaviour
         if (timeValue > 0)
         {
             timeValue -= Time.deltaTime;
+            timeSpend += Time.deltaTime;
             int minutes = (int)timeValue / 60;
             int seconds = (int)timeValue - (60 * minutes);
             if(seconds < 10)

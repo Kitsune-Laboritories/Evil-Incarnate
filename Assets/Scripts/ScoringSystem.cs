@@ -18,12 +18,20 @@ public class ScoringSystem : MonoBehaviour
         taskDone = false;
     }
 
+    void Awake()
+    {
+        keys = 0;
+    }
+
     // Update is called once per frame
     void Update()
     {
         scoreText.text =  keys + " keys";
         if (keys >= 3)
+        {
             taskDone = true;
+        }
         
     }
+
 }

@@ -63,7 +63,7 @@ namespace PW
         {
             float maxDistance = 2.0f;
 
-            GameObject[] pickableObjects = GameObject.FindGameObjectsWithTag("PickableObject");
+            GameObject[] pickableObjects = GameObject.FindGameObjectsWithTag("Player");
 
             float closestDistance = float.MaxValue;
             GameObject closestObject = null;

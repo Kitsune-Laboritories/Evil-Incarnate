@@ -6,7 +6,7 @@ public class AutoMoveAndCreate : MonoBehaviour
 {
     public GameObject car;
     public float speed = 15f;
-    public float distance = 10f;
+    public float distance = 100f;
     private Vector3 initialPos;
     private Quaternion initialRotate;
     private float currentDistance;

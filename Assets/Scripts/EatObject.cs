@@ -21,7 +21,7 @@ public class EatObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            float maxDistance = 10.0f;
+            float maxDistance = 1.0f;
 
             GameObject[] foods = GameObject.FindGameObjectsWithTag("Food");
 
@@ -45,12 +45,13 @@ public class EatObject : MonoBehaviour
                 m.GetComponent<AudioSource>().Play();
                 Destroy(closestObject);
                 ScoringSystem.theScore += 1;
+                TimerCountdown.timeValue += 10f;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            float maxDistance = 10.0f;
+            float maxDistance = 2.0f;
 
             GameObject[] keys = GameObject.FindGameObjectsWithTag("Key");
 
