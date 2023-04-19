@@ -12,6 +12,7 @@ TagManager:
   - Door
   - Fluid
   - Openable
+  - Exit
   layers:
   - Default
   - TransparentFX
