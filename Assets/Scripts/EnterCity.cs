@@ -30,7 +30,8 @@ public class EnterCity : MonoBehaviour
             float distance = Vector3.Distance(player.position, obj.transform.position);
             if (distance < closestDistance)
             {
-                SceneManager.LoadScene("City - Malia");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                TimerCountdown.timeValue += 30;
             }
         }
         

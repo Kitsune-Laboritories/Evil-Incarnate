@@ -49,7 +49,7 @@ public class DoorAnimationController : MonoBehaviour
                 door = closestObject;
                 //turn on animation
                 animator.SetBool("isOpen", true);
-                SceneManager.LoadScene("ScoreBoard");
+              
             }
         }
     }
