@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TimerCountdown : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
-    public static float timeValue = 90;
+    public static float timeValue;
     public static float timeSpend;
     
 
@@ -16,6 +16,7 @@ public class TimerCountdown : MonoBehaviour
     void Start()
     {
         timeText = GetComponent<TextMeshProUGUI>();
+        timeValue += 90;
     }
 
     // Update is called once per frame
@@ -41,8 +42,7 @@ public class TimerCountdown : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            timeValue += 90;
+            SceneManager.LoadScene("ScoreBoard");
         }
 
     }
