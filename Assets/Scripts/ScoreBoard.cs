@@ -19,7 +19,7 @@ public class ScoreBoard : MonoBehaviour
         newScore = ScoringSystem.theScore;
         playerName = PlayerName.playerName;
         GameOverCanvas.SetActive(true);
-        if (ScoringSystem.taskDone || ScoringSystem.cityTaskDone)
+        if (ScoringSystem.taskDone)
         {
             Next.SetActive(true);
             Try_Again.SetActive(false);
@@ -58,17 +58,7 @@ public class ScoreBoard : MonoBehaviour
 
     public void TryAgainButton()
     {
-        string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "Store")
-        {
-            SceneManager.LoadScene("Store");
-            ScoringSystem.keys = 0;
-        }
-        else
-        {
-            SceneManager.LoadScene("City");
-            ScoringSystem.keys = 0;
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void Quit()
