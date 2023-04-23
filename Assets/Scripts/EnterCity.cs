@@ -31,7 +31,6 @@ public class EnterCity : MonoBehaviour
             if (distance < closestDistance)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-                TimerCountdown.timeValue += 30;
             }
         }
         

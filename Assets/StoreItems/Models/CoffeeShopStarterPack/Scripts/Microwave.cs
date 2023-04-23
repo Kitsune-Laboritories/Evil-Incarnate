@@ -56,36 +56,6 @@ namespace PW
             
         }
 
-        // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            float maxDistance = 2.0f;
-
-            GameObject[] pickableObjects = GameObject.FindGameObjectsWithTag("Player");
-
-            float closestDistance = float.MaxValue;
-            GameObject closestObject = null;
-            foreach (GameObject obj in pickableObjects)
-            {
-                float distance = Vector3.Distance(transform.position, obj.transform.position);
-                if (distance < closestDistance && distance < maxDistance)
-                {
-                        closestDistance = distance;
-                        closestObject = obj;
-                }
-            }
-
-
-                if (closestObject != null)
-            {
-                OnMouseDown();
-                ScoringSystem.theScore += 70;
-            }
-        }
-    }
-
         IEnumerator OpenMicrowaveAndHeatProduct()
         {
             yield return StartCoroutine(PlayDoorAnim(true, true));
