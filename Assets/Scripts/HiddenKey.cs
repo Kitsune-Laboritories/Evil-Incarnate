@@ -7,14 +7,15 @@ public class HiddenKey : MonoBehaviour
     public GameObject HiddenObject;
     private Transform t;
     private Transform player;
-    private int count;
+    public int count;
+    private int reveal;
     GameObject closestObject;
     Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        count = 0; 
+        reveal = count;
     }
 
     private void Awake()
@@ -28,23 +29,31 @@ public class HiddenKey : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            count += 1;
-            GameObject[] food = GameObject.FindGameObjectsWithTag("Food");
+            
+            GameObject[] hidden = GameObject.FindGameObjectsWithTag("Hidden");
+            float maxDistance = 2.0f;
             float closestDistance = 1.5f;
-            foreach (GameObject obj in food)
+            foreach (GameObject obj in hidden)
             {
                 float distance = Vector3.Distance(player.position, obj.transform.position);
-                if (distance < closestDistance)
+                if (distance < closestDistance && distance < maxDistance)
                 {
                     closestDistance = distance;
                     closestObject = obj;
                 }
             }
+            if (closestObject != null)
+            {
+                count -= 1;
+            }
         }
 
-        if (closestObject != null && count == 3)
+        if(count == 0)
         {
             HiddenObject.SetActive(true);
         }
+
+        
+       
     }
 }
