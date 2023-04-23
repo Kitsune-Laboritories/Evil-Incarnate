@@ -30,7 +30,7 @@ public class TreeAnimation : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(ShakeIt());
-            GameObject[] hidden = GameObject.FindGameObjectsWithTag("Hidden");
+            GameObject[] hidden = GameObject.FindGameObjectsWithTag("Tree");
             float maxDistance = 2.0f;
             float closestDistance = 1.5f;
             foreach (GameObject obj in hidden)

@@ -8,14 +8,12 @@ public class HiddenKey : MonoBehaviour
     private Transform t;
     private Transform player;
     public int count;
-    private int reveal;
     GameObject closestObject;
     Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        reveal = count;
     }
 
     private void Awake()

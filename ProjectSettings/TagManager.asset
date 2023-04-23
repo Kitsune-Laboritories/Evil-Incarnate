@@ -18,6 +18,8 @@ TagManager:
   - Car
   - Undefined
   - Hidden
+  - Tree
+  - Trash
   layers:
   - Default
   - TransparentFX
