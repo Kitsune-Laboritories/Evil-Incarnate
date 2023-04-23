@@ -16,6 +16,8 @@ TagManager:
   - TurnLeft
   - TurnRight
   - Car
+  - Undefined
+  - Hidden
   layers:
   - Default
   - TransparentFX
