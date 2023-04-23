@@ -15,6 +15,7 @@ TagManager:
   - Exit
   - TurnLeft
   - TurnRight
+  - Car
   layers:
   - Default
   - TransparentFX

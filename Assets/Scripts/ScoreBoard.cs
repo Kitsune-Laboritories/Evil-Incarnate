@@ -11,6 +11,7 @@ public class ScoreBoard : MonoBehaviour
     private string playerName;
     public GameObject GameOverCanvas;
     public GameObject Next;
+    public GameObject Try_Again;
 
     // Start is called before the first frame update
     void Start()
@@ -18,14 +19,16 @@ public class ScoreBoard : MonoBehaviour
         newScore = ScoringSystem.theScore;
         playerName = PlayerName.playerName;
         GameOverCanvas.SetActive(true);
-        //if (ScoringSystem.taskDone)
-        //{
-        //    Next.SetActive(true);
-        //}
-        //else
-        //{
+        if (ScoringSystem.taskDone || ScoringSystem.cityTaskDone)
+        {
+            Next.SetActive(true);
+            Try_Again.SetActive(false);
+        }
+        else
+        {
             Next.SetActive(false);
-        //}
+            Try_Again.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -46,7 +49,6 @@ public class ScoreBoard : MonoBehaviour
             }
 
         }
-        // output.text = playerName + ": " + timeValue;
     }
 
     public void MainMenuButton()
@@ -56,8 +58,17 @@ public class ScoreBoard : MonoBehaviour
 
     public void TryAgainButton()
     {
-        SceneManager.LoadScene("Intro");
-        ScoringSystem.keys = 0;
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Store")
+        {
+            SceneManager.LoadScene("Store");
+            ScoringSystem.keys = 0;
+        }
+        else
+        {
+            SceneManager.LoadScene("City");
+            ScoringSystem.keys = 0;
+        }
     }
 
     public void Quit()
@@ -68,6 +79,7 @@ public class ScoreBoard : MonoBehaviour
 
     public void NextScene()
     {
-        //SceneManager.LoadScene("City");
+        SceneManager.LoadScene("City");
+        ScoringSystem.keys = 0;
     }
 }

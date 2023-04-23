@@ -10,17 +10,36 @@ public class AutoMoveCar : MonoBehaviour
     public AudioClip car_horn_sound;
     private GameObject m;
     public CharacterController player;
+    private Vector3 initialPos;
+    private Quaternion initialRotate;
 
     void Start()
     {
         car_horn_sound = (AudioClip) Resources.Load<AudioClip>("car_horn");
         m = new GameObject("Music");
+        initialPos = transform.position;
+        initialRotate = transform.rotation;
+        GameObject playerG = GameObject.FindGameObjectWithTag("Player");
+        player = playerG.GetComponent<CharacterController>();
+    }
+
+    void Awake()
+    {
+        player = GetComponent<CharacterController>();
     }
 
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         time += Time.deltaTime;
+
+        float distanceP = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceP > 50f)
+        {
+            Instantiate(gameObject, initialPos, initialRotate);
+            Destroy(m);
+            Destroy(gameObject);
+        }
 
         float maxDistance = 2.0f;
 
@@ -44,24 +63,27 @@ public class AutoMoveCar : MonoBehaviour
                 closestObject = obj;
             }
         }
-        if (closestObject != null && time >= 1f)
+        if (closestObject != null && time >= 0.3f)
         {
             if (closestObject.CompareTag("TurnLeft"))
             {
-                StartCoroutine(TurnAfterDelay(0.1f, Vector3.down));
+                // StartCoroutine(TurnAfterDelay(0.1f, Vector3.down));
+                transform.rotation = closestObject.transform.rotation;
             }
             else if (closestObject.CompareTag("TurnRight"))
             {
-                StartCoroutine(TurnAfterDelay(0.1f, Vector3.up));
+                // StartCoroutine(TurnAfterDelay(0.1f, Vector3.up));
+                transform.rotation = closestObject.transform.rotation;
             }
             else if (closestObject.CompareTag("Player"))
             {
+                ScoringSystem.lives -= 1;
                 m.AddComponent<AudioSource>();
                 m.GetComponent<AudioSource>().clip = car_horn_sound;
                 m.GetComponent<AudioSource>().volume = 0.15f;
                 m.GetComponent<AudioSource>().Play();
                 Vector3 throwDirection = transform.position - closestObject.transform.position;
-                throwDirection.y = 10f;
+                throwDirection.y = 0f;
                 throwDirection.Normalize();
                 player.Move(-throwDirection * pushPower);
 

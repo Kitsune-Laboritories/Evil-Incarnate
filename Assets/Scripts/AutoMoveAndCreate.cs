@@ -4,36 +4,46 @@ using UnityEngine;
 
 public class AutoMoveAndCreate : MonoBehaviour
 {
-    public GameObject car;
-    public float speed = 15f;
-    public float distance = 100f;
+    public float speed = 7f;
+    public float time = 0f;
+    public float timeGap = 20f;
     private Vector3 initialPos;
     private Quaternion initialRotate;
-    private float currentDistance;
     public float pushPower = 10f;
     public AudioClip car_horn_sound;
     private GameObject m;
+    public CharacterController player;
 
     void Start()
     {
         initialPos = transform.position;
         initialRotate = transform.rotation;
-        currentDistance = 0f;
+        time = 0f;
         car_horn_sound = (AudioClip) Resources.Load<AudioClip>("car_horn");
         m = new GameObject("Music");
+        GameObject playerG = GameObject.FindGameObjectWithTag("Player");
+        player = playerG.GetComponent<CharacterController>();
+    }
+
+    void Awake()
+    {
+        player = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        if (currentDistance < distance)
+        time += Time.deltaTime;
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        if (time >= timeGap)
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            currentDistance += speed * Time.deltaTime;
+            Instantiate(gameObject, initialPos, initialRotate);
+            time = 0f;
         }
-        else
+        float distanceP = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceP > 50f)
         {
-            Instantiate(car, initialPos, initialRotate);
-            currentDistance = 0f;
+            Instantiate(gameObject, initialPos, initialRotate);
+            Destroy(m);
             Destroy(gameObject);
         }
     }
@@ -45,6 +55,7 @@ public class AutoMoveAndCreate : MonoBehaviour
             CharacterController controller = collision.collider.GetComponent<CharacterController>();
             if (controller)
             {
+                ScoringSystem.lives -= 1;
                 m.AddComponent<AudioSource>();
                 m.GetComponent<AudioSource>().clip = car_horn_sound;
                 m.GetComponent<AudioSource>().volume = 0.3f;
