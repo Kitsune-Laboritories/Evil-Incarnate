@@ -24,7 +24,7 @@ public class EndGame : MonoBehaviour
     {
 
         GameObject[] exit = GameObject.FindGameObjectsWithTag("Exit");
-        float closestDistance = 0.5f;
+        float closestDistance = 1.0f;
         foreach (GameObject obj in exit)
         {
             float distance = Vector3.Distance(player.position, obj.transform.position);

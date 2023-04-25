@@ -21,7 +21,6 @@ public class Intro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoringSystem.theScore = 0;
         playerName = PlayerName.playerName;
         next = 0;
         sound = (AudioClip) Resources.Load<AudioClip>("button");

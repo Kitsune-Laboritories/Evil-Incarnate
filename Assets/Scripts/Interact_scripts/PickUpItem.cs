@@ -61,7 +61,6 @@ public class PickUpItem : MonoBehaviour
 
                 forceMultiplier = 0;
                 readyToThrow = false;
-                ScoringSystem.theScore += 20;
             }
 
             forceMultiplier = 0;

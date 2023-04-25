@@ -15,6 +15,8 @@ public class ScoreBoard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         playerName = PlayerName.playerName;
         GameOverCanvas.SetActive(true);
         sound = (AudioClip) Resources.Load<AudioClip>("button");

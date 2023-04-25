@@ -33,7 +33,6 @@ public class IntroCity : MonoBehaviour
             output2.text = "The kitty remembers that the keys are hidden all over the city. Press H to recollect the kitty's memories to find where the keys are hidden.";
             output3.text = "Make sure to watch for cars, you'll lose a life if you get hit! Good luck! ";
         }
-        ScoringSystem.theScore = 0;
         playerName = PlayerName.playerName;
         next = 0;
         sound = (AudioClip) Resources.Load<AudioClip>("button");

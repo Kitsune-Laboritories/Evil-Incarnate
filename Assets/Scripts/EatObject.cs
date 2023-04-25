@@ -44,7 +44,6 @@ public class EatObject : MonoBehaviour
                 m.GetComponent<AudioSource>().volume = 0.2f;
                 m.GetComponent<AudioSource>().Play();
                 Destroy(closestObject);
-                ScoringSystem.theScore += 1;
                 TimerCountdown.timeValue += 10f;
             }
         }

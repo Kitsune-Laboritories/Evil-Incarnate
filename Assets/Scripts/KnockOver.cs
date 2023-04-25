@@ -50,7 +50,6 @@ public class KnockOver: MonoBehaviour
             // m.GetComponent<AudioSource>().clip = sound;
             // m.GetComponent<AudioSource>().volume = 0.2f;
             // m.GetComponent<AudioSource>().Play();
-            ScoringSystem.theScore += pointsEarned;
             taskDone = true;
         }
     }

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ScoringSystem : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public static int theScore = 0;
+
    // public static Vector3 initialPosition;
     public static bool taskStore;
     public static bool taskCity;
@@ -18,7 +18,7 @@ public class ScoringSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // scoreText = GetComponent<TextMeshProUGUI>();
+        scoreText = GetComponent<TextMeshProUGUI>();
         taskStore = false;
         taskCity = false;
     }
@@ -32,7 +32,7 @@ public class ScoringSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreText.text =  keys + " keys";
+        scoreText.text = keys + " keys";
         livesText.text = lives + " lives";
         if (keys >= 3)
         {
