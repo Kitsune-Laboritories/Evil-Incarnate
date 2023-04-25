@@ -24,13 +24,13 @@ public class IntroCity : MonoBehaviour
         if (playerName != null)
         {
             output1.text = "You made into the city!" + playerName + "'s house is just nearby, and will need five keys to enter.";
-            output2.text = playerName + "remembers that the keys are hidden all over the city. Press H to recollect the kitty's memories to fine where the keys are hidden.";
+            output2.text = playerName + "remembers that the keys are hidden all over the city. Press H to recollect the kitty's memories to find where the keys are hidden.";
             output3.text = "Make sure to watch for cars, you'll lose a life if you get hit! Good luck! ";
         }
         else
         {
             output1.text = "You made into the city! The kitty's house is just nearby, and will need five keys to enter.";
-            output2.text = "The kitty remembers that the keys are hidden all over the city. Press H to recollect the kitty's memories to fine where the keys are hidden.";
+            output2.text = "The kitty remembers that the keys are hidden all over the city. Press H to recollect the kitty's memories to find where the keys are hidden.";
             output3.text = "Make sure to watch for cars, you'll lose a life if you get hit! Good luck! ";
         }
         ScoringSystem.theScore = 0;
