@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Store.unity
     guid: 7b9a8f18a933e4d70bd2d0f8345f24c5
   - enabled: 1
-    path: Assets/Scenes/ScoreBoard.unity
-    guid: b87d59b64bb6b4349b84623dd3aa7741
+    path: Assets/Scenes/IntroCity.unity
+    guid: 2035c94ae45e14a14911f5838a2a62fd
   - enabled: 1
     path: Assets/Scenes/City.unity
-    guid: 2130424b3ba8e404fa8351fb087dcf39
+    guid: d56bbc5f7fa634f9c8d7b5daa29f512f
+  - enabled: 1
+    path: Assets/Scenes/ScoreBoard.unity
+    guid: b87d59b64bb6b4349b84623dd3aa7741
   m_configObjects: {}

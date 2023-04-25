@@ -9,18 +9,18 @@ public class ScoringSystem : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public static int theScore = 0;
-    public static Vector3 initialPosition;
-    public static bool taskDone;
-    public static bool cityTaskDone;
-    public static int keys = 0;
+   // public static Vector3 initialPosition;
+    public static bool taskStore;
+    public static bool taskCity;
+    public static int keys;
     public static int lives = 9;
     public TextMeshProUGUI livesText;
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = GetComponent<TextMeshProUGUI>();
-        taskDone = false;
-        cityTaskDone = false;
+       // scoreText = GetComponent<TextMeshProUGUI>();
+        taskStore = false;
+        taskCity = false;
     }
 
     void Awake()
@@ -36,12 +36,13 @@ public class ScoringSystem : MonoBehaviour
         livesText.text = lives + " lives";
         if (keys >= 3)
         {
-            taskDone = true;
+            taskStore = true;
+            Debug.Log("Task in the the Store done?: " + taskStore);
         }
 
         if (keys >= 5)
         {
-            cityTaskDone = true;
+            taskCity = true;
         }
 
         if (lives <= 0)

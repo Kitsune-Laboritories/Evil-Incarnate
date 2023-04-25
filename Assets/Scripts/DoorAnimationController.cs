@@ -29,7 +29,7 @@ public class DoorAnimationController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
 
-            GameObject[] doors = GameObject.FindGameObjectsWithTag("Player");
+            GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
 
             float closestDistance = 1.5f;
             GameObject closestObject = null;
@@ -44,7 +44,7 @@ public class DoorAnimationController : MonoBehaviour
             }
             
 
-            if (closestObject != null && ScoringSystem.taskDone == true)
+            if (closestObject != null && ScoringSystem.taskStore == true)
             {
                 door = closestObject;
                 //turn on animation

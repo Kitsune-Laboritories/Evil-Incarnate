@@ -19,7 +19,7 @@ public class ScoreBoard : MonoBehaviour
         newScore = ScoringSystem.theScore;
         playerName = PlayerName.playerName;
         GameOverCanvas.SetActive(true);
-        if (ScoringSystem.taskDone)
+        if (ScoringSystem.taskCity)
         {
             Next.SetActive(true);
             Try_Again.SetActive(false);
