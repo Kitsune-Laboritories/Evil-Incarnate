@@ -30,6 +30,8 @@ public class EndGame : MonoBehaviour
             float distance = Vector3.Distance(player.position, obj.transform.position);
             if (distance < closestDistance && ScoringSystem.taskCity == true)
             {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
