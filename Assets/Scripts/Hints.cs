@@ -30,11 +30,11 @@ public class Hints : MonoBehaviour
         playerName = PlayerName.playerName;
         next = 0;
         output1.text = "Hint #1: Synty Ave is located in the middle of the city conveniently across home.";
-        output2.text = "Hint #2: The owner thought it would be good idea to hide a key at his favorite chinese take-out restaurant. It's just nearby afterall!";
+        output2.text = "Hint #2: My owner thought it would be good idea to hide a key at his favorite chinese take-out restaurant. It's just nearby afterall!";
         output3.text = "Hint #3: This hole in a wall pizza joint has the best pepperoni cheese pizza in the city. I could eat a whole pie!";
         output4.text = "Hint #4: One time I got stuck climbing a tree and had to be rescued. The flower's smelled too good and it remminds me of home, I couldn't helpt it!";
         output5.text = "Hint #5: The best part about eating a taco, is sometimes humans drop some delicious morsels for me to swipe.";
-        output6.text = "Hint #6: But the my most favorite place in this whole city is still home.";
+        output6.text = "Hint #6: But my most favorite place in this whole city is still home.";
         ToH1Canvas();
     }
 

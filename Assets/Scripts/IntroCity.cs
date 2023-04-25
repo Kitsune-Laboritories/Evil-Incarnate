@@ -18,6 +18,18 @@ public class IntroCity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (playerName != null)
+        {
+            output1.text = "You made into the city!" + playerName + "'s house is just nearby, and will need five keys to enter.";
+            output2.text = playerName + "remembers that the keys are hidden all over the city. Press H to recollect the kitty's memories to fine where the keys are hidden.";
+            output3.text = "Make sure to watch for cars, you'll lose a life if you get hit! Good luck! ";
+        }
+        else
+        {
+            output1.text = "You made into the city! The kitty's house is just nearby, and will need five keys to enter.";
+            output2.text = "The kitty remembers that the keys are hidden all over the city. Press H to recollect the kitty's memories to fine where the keys are hidden.";
+            output3.text = "Make sure to watch for cars, you'll lose a life if you get hit! Good luck! ";
+        }
         ScoringSystem.theScore = 0;
         playerName = PlayerName.playerName;
         next = 0;
@@ -30,13 +42,11 @@ public class IntroCity : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Return) && next == 0)
         {
-            output2.text = "You made into the city!" + playerName + "'s house is just nearby, and will need five keys to enter.";
             next += 1;
             ToHintCanvas();
         }
         else if (Input.GetKeyDown(KeyCode.Return) && next == 1)
         {
-            output3.text = "Move around with the WASD key and interact with objects to find hidden treasures.";
             next += 1;
             ToHomeCanvas();
         }
@@ -50,7 +60,7 @@ public class IntroCity : MonoBehaviour
 
     public void ToIntroCanvas()
     {
-        output1.text = "You made into the city!" + playerName + "'s house is just nearby, and will need five keys to enter.";
+        next = 0;
         HintCanvas.SetActive(false);
         HomeCanvas.SetActive(false);
         IntroCanvas.SetActive(true);
@@ -58,14 +68,7 @@ public class IntroCity : MonoBehaviour
 
     public void ToHintCanvas()
     {
-        if (playerName != null)
-        {
-            output2.text = playerName + "remembers that the keys are hidden all over the city, press H to recollect where they are hidden.";
-        }
-        else
-        {
-            output2.text = "The kitty remembers that the keys are hidden all over the city, press H to recall where they are hidden.";
-        }
+        next = 1;
         IntroCanvas.SetActive(false);
         HomeCanvas.SetActive(false);
         HintCanvas.SetActive(true);
@@ -73,7 +76,7 @@ public class IntroCity : MonoBehaviour
 
     public void ToHomeCanvas()
     {
-        output3.text = "Find all five keys and find your way home. Good luck!";
+        next = 2;
         IntroCanvas.SetActive(false);
         HintCanvas.SetActive(false);
         HomeCanvas.SetActive(true);
