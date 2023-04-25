@@ -56,7 +56,7 @@ public class PausedMenu : MonoBehaviour
 
     public void RestartButton()
     {
-        SceneManager.LoadScene("Intro");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         ScoringSystem.theScore = 0;
     }
 }
