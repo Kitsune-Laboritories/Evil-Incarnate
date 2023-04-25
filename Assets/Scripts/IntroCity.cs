@@ -14,6 +14,9 @@ public class IntroCity : MonoBehaviour
     public GameObject HintCanvas;
     public GameObject HomeCanvas;
     private int next;
+    public AudioClip sound;
+    private GameObject m;
+    private bool introStart;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,11 @@ public class IntroCity : MonoBehaviour
         ScoringSystem.theScore = 0;
         playerName = PlayerName.playerName;
         next = 0;
+        sound = (AudioClip) Resources.Load<AudioClip>("button");
+        m = new GameObject("Music");
+        m.AddComponent<AudioSource>();
+        m.GetComponent<AudioSource>().clip = sound;
+        introStart = true;
         ToIntroCanvas();
     }
 
@@ -60,6 +68,11 @@ public class IntroCity : MonoBehaviour
 
     public void ToIntroCanvas()
     {
+        if(!introStart)
+        {
+            m.GetComponent<AudioSource>().Play();
+            introStart = false;
+        }
         next = 0;
         HintCanvas.SetActive(false);
         HomeCanvas.SetActive(false);
@@ -69,6 +82,8 @@ public class IntroCity : MonoBehaviour
     public void ToHintCanvas()
     {
         next = 1;
+        introStart = false;
+        m.GetComponent<AudioSource>().Play();
         IntroCanvas.SetActive(false);
         HomeCanvas.SetActive(false);
         HintCanvas.SetActive(true);
@@ -77,6 +92,8 @@ public class IntroCity : MonoBehaviour
     public void ToHomeCanvas()
     {
         next = 2;
+        introStart = false;
+        m.GetComponent<AudioSource>().Play();
         IntroCanvas.SetActive(false);
         HintCanvas.SetActive(false);
         HomeCanvas.SetActive(true);
@@ -84,6 +101,8 @@ public class IntroCity : MonoBehaviour
 
     public void ToCityButton()
     {
+        m.GetComponent<AudioSource>().Play();
+        introStart = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene("City");
