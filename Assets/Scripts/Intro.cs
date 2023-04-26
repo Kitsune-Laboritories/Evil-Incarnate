@@ -28,6 +28,18 @@ public class Intro : MonoBehaviour
         m.AddComponent<AudioSource>();
         m.GetComponent<AudioSource>().clip = sound;
         introStart = true;
+        if (playerName != null)
+        {
+            output1.text = playerName + ", the tabby cat woke up from his nap to find his owner has gone without the poor kitty.";
+        }
+        else
+        {
+            output1.text = "The tabby cat woke up from his nap to find his owner has gone without the poor kitty.";
+        }
+        
+        output2.text = "Unfortunately the door needs three special keys to unlock. Get all three keys to unlock the door, and go home!";
+        output3.text = "Move around with the WASD key and interact with objects to find hidden treasures.";
+
         ToIntroCanvas();
     }
 
@@ -37,21 +49,17 @@ public class Intro : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Return) && next == 0)
         {
-            output2.text = "Unfortunately the door needs three special keys to unlock. Get all three keys to unlock the door, and go home!";
             next += 1;
             ToKeysCanvas();
         }
         else if (Input.GetKeyDown(KeyCode.Return) && next == 1)
         {
-            output3.text = "Move around with the WASD key and interact with objects to find hidden treasures.";
             next += 1;
-            ToStoreButton();
+            ToControlsCanvas();
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            SceneManager.LoadScene("Store");
+            ToStoreButton();
         }
     }
 
@@ -62,7 +70,7 @@ public class Intro : MonoBehaviour
             m.GetComponent<AudioSource>().Play();
             introStart = false;
         }
-        output1.text = playerName + ", the tabby cat woke up from his nap to find his owner gone him without the poor kitty.";
+        next = 0;
         ControlsCanvas.SetActive(false);
         KeysCanvas.SetActive(false);
         IntroCanvas.SetActive(true);
@@ -70,6 +78,7 @@ public class Intro : MonoBehaviour
 
     public void ToKeysCanvas()
     {
+        next = 1;
         m.GetComponent<AudioSource>().Play();
         introStart = false;
         output2.text = "Unfortunately the door needs three special keys to unlock. Get all three keys to unlock the door, and go home!";
@@ -80,6 +89,7 @@ public class Intro : MonoBehaviour
 
     public void ToControlsCanvas()
     {
+        next = 2;
         m.GetComponent<AudioSource>().Play();
         introStart = false;
         output3.text = "Move around with the WASD key and interact with objects to find hidden treasures.";
